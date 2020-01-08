@@ -17,12 +17,12 @@ def main():
     clock = pygame.time.Clock()
     while True:
         clock.tick()
-
+        game.set_fps(clock.get_fps())
         check_events()
 
         game.run()
 
-        show_fps(clock.get_fps())
+        show_fps(game.fps)
         pygame.display.flip()
         pygame.time.wait(10)
 
