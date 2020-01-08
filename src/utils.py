@@ -9,8 +9,8 @@ def drawText(position, textString, right=False, up=False, ):
     textSurface = font.render(textString, True, (255, 255, 255, 255), (0, 0, 0, 255))
     textData = pygame.image.tostring(textSurface, "RGBA", True)
     if right:
-        position[0] = position[0] - textSurface.get_height()
+        position[0] = position[0] - textSurface.get_width()
     if up:
-        position[1] = position[1] - textSurface.get_width()
+        position[1] = position[1] - textSurface.get_height()
     glWindowPos3d(*position)
     glDrawPixels(textSurface.get_width(), textSurface.get_height(), GL_RGBA, GL_UNSIGNED_BYTE, textData)
