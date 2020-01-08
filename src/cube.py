@@ -1,6 +1,7 @@
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
+from OpenGL.GLUT import *
 
 colors = (
     (1, 0, 0),
@@ -58,17 +59,9 @@ class Cube():
     def __init__(self):
         pass
 
-    def draw(self, color):
-        glBegin(GL_QUADS)
-        for idx, surface in enumerate(self.surfaces):
-            for vertex in surface:
-                glColor3fv(colors[idx])
-                glVertex3fv(self.verticies[vertex])
-        glEnd()
-
-        glBegin(GL_LINES)
-        for edge in self.edges:
-            for vertex in edge:
-                glColor3fv((0, 0, 0))
-                glVertex3fv(self.verticies[vertex])
-        glEnd()
+    def draw(self, position, color):
+        glColor3f(*color)
+        glPushMatrix()
+        glTranslatef(*position)
+        glutSolidCube(1)
+        glPopMatrix()
