@@ -3,6 +3,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 from .cube import Cube
+from .miscellaneous import show_axes
 
 
 class GameLife():
@@ -20,7 +21,12 @@ class GameLife():
         if not self.can_run:
             return
 
-        glRotatef(60/self.fps, 180/self.fps, 60/self.fps, 60/self.fps)
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
-        self.c.draw((0, 0, 0), (0, 1, 0))
-        self.c.draw((0, 0, 2), (1, 0, 0))
+        rotX = 60/self.fps
+        rotY = 60/self.fps
+        rotZ = 0
+        glRotatef(rotX, 1, 0, 0)
+        glRotatef(rotY, 0, 1, 0)
+        self.c.draw((1, 0, 0), (0, 1, 0))
+        self.c.draw((0, 0, 1), (1, 0, 0))
+
+        show_axes(rotX, rotY, rotZ)

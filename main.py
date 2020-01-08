@@ -16,6 +16,8 @@ def main():
 
     clock = pygame.time.Clock()
     while True:
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
         clock.tick()
         game.set_fps(clock.get_fps())
         check_events()

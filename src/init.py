@@ -12,4 +12,8 @@ def init_game():
 
     gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
 
-    glTranslatef(0.0, 0.0, -5)
+    gluLookAt(0, 0, -5, 0, 0, 0, 0, 1, 0)
+    #  Enable depth test
+    glEnable(GL_DEPTH_TEST)
+    # Accept fragment if it closer to the camera than the former one
+    glDepthFunc(GL_LESS)
