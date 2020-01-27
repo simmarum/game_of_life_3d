@@ -43,25 +43,33 @@ class GameLife():
         tmp_old_cz = self.cz
         for event in events:
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key in [pygame.K_q]:
+                    self.cr += 1
+                    if self.cr > 50:
+                        self.cr = 50
+                if event.key in [pygame.K_e]:
+                    self.cr -= 1
+                    if self.cr < 20:
+                        self.cr = 20
+                if event.key in [pygame.K_LEFT, pygame.K_a]:
                     self.ca_phi += self.angle_step
                     if self.ca_phi > 2*self.pi:
                         self.ca_phi -= 2*self.pi
                     if self.ca_phi < 0:
                         self.ca_phi += 2*self.pi
-                if event.key == pygame.K_RIGHT:
+                if event.key in [pygame.K_RIGHT, pygame.K_d]:
                     self.ca_phi -= self.angle_step
                     if self.ca_phi > 2*self.pi:
                         self.ca_phi -= 2*self.pi
                     if self.ca_phi < 0:
                         self.ca_phi += 2*self.pi
-                if event.key == pygame.K_UP:
+                if event.key in [pygame.K_UP, pygame.K_w]:
                     self.ca_theta -= self.angle_step
                     if self.ca_theta > 0.75*self.pi:
                         self.ca_theta = 0.75*self.pi
                     if self.ca_theta < 0.25*self.pi:
                         self.ca_theta = 0.25*self.pi
-                if event.key == pygame.K_DOWN:
+                if event.key in [pygame.K_DOWN, pygame.K_s]:
                     self.ca_theta += self.angle_step
                     if self.ca_theta > 0.75*self.pi:
                         self.ca_theta = 0.75*self.pi
