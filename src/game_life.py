@@ -30,6 +30,8 @@ class GameLife():
         self.rotY = 0
         self.rotZ = 0
 
+        pygame.key.set_repeat(200, 100)
+
     def set_fps(self, new_fps):
         self.can_run = True if new_fps > 0 else False
         self.fps = new_fps
