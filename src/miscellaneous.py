@@ -8,7 +8,7 @@ from .utils import drawText
 
 def show_fps(fps_counter):
     screen = pygame.display.Info()
-    drawText([0, screen.current_h, 1], str(int(fps_counter)), up=True)
+    drawText([0, 0, 0], str(int(fps_counter)))
 
 
 def show_axes(rotX, rotY, rotZ, length_axis=100):
