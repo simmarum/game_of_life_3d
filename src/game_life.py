@@ -6,12 +6,16 @@ from OpenGL.GLU import *
 
 from .cube import Cube
 from .miscellaneous import show_axes
+from .board import Board
 
 
 class GameLife():
 
     def __init__(self):
         self.c = Cube()
+        self.board = Board(10)
+        self.board.populate_board('corner')
+
         self.fps = 60
         self.can_run = False
 
@@ -104,4 +108,5 @@ class GameLife():
         self.c.draw((0, 0, 1), (1, 0, 0))
         glPopMatrix()
 
+        self.board.draw(None)
         show_axes(self.rotX, self.rotY, self.rotZ)

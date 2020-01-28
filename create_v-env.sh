@@ -15,6 +15,9 @@ python3 -m venv $SCRIPTPATH/v-env
 . $SCRIPTPATH/v-env/bin/activate
 
 pip3 install --compile \
+autopep8==1.4.4 \
+numpy==1.18.1 \
+pycodestyle==2.5.0 \
 pygame==1.9.6 \
 PyOpenGL==3.1.4 \
-PyOpenGL_accelerate==3.1.4
+PyOpenGL-accelerate==3.1.4
