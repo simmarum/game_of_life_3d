@@ -13,7 +13,7 @@ class GameLife():
 
     def __init__(self):
         self.c = Cube()
-        self.board = Board(10)
+        self.board = Board(10, [4, 5, 6], [5, 6, 7])
         self.board.populate_board('corner')
 
         self.fps = 60
@@ -49,6 +49,8 @@ class GameLife():
         tmp_old_cz = self.cz
         for event in events:
             if event.type == pygame.KEYDOWN:
+                if event.key in [pygame.K_1]:
+                    self.board.calculate_next_step()
                 if event.key in [pygame.K_q]:
                     self.cr += 1
                     if self.cr > 50:

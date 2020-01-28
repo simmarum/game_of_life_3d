@@ -2,11 +2,15 @@ import numpy as np
 from OpenGL.GL import *
 # from OpenGL.GLU import *
 from .cube import Cube
+import scipy.ndimage.filters
 
 
 class Board():
-    def __init__(self, n):
+    def __init__(self, n, to_born, to_live):
         self.n = n
+        self.to_born = to_born
+        self.to_live = to_live
+
         self.board = np.zeros((n, n, n))
         self.c = Cube()
 
@@ -30,8 +34,28 @@ class Board():
         if mode == 'corner':
             self._populate_board_corner()
 
+    def _sum_small_cubes(self, a):
+        a = a.reshape((3, 3, 3))
+        a[1, 1, 1] = 0
+        s = np.sum(a)
+        return s
+
     def calculate_next_step(self):
-        pass
+        print("Step")
+        small_cubes = scipy.ndimage.filters.generic_filter(
+            self.board,
+            self._sum_small_cubes,
+            size=3,
+            mode='constant'
+        )
+
+        candidate_born = np.isin(small_cubes, self.to_born)
+        candidate_live = np.isin(small_cubes, self.to_live)
+
+        arr_born = np.bitwise_and(self.board == 0, candidate_born)
+        arr_live = np.bitwise_and(self.board == 1, candidate_live)
+
+        self.board = np.bitwise_or(arr_born, arr_live).astype(int)
 
     def draw(self, pos3d):
         if pos3d is None:
