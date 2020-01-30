@@ -10,8 +10,8 @@ class Cube():
         pass
 
     def draw(self, position, color):
-        glColor3f(*color)
         glPushMatrix()
         glTranslatef(*position)
+        glColor3f(*color)
         glutSolidCube(1)
         glPopMatrix()

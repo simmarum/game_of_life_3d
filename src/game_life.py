@@ -13,7 +13,7 @@ class GameLife():
 
     def __init__(self):
         self.c = Cube()
-        self.board = Board(10, [4, 5, 6], [5, 6, 7])
+        self.board = Board(30, [4, 5, 6], [5, 6, 7])
         self.board.populate_board('corner')
 
         self.fps = 60
@@ -52,11 +52,11 @@ class GameLife():
                 if event.key in [pygame.K_1]:
                     self.board.calculate_next_step()
                 if event.key in [pygame.K_q]:
-                    self.cr += 1
-                    if self.cr > 50:
-                        self.cr = 50
+                    self.cr += 2
+                    if self.cr > 100:
+                        self.cr = 100
                 if event.key in [pygame.K_e]:
-                    self.cr -= 1
+                    self.cr -= 2
                     if self.cr < 20:
                         self.cr = 20
                 if event.key in [pygame.K_LEFT, pygame.K_a]:
@@ -96,6 +96,12 @@ class GameLife():
             return
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+
+        glLightfv(GL_LIGHT0, GL_POSITION, [0, 0, 0])
+        glLightfv(GL_LIGHT0, GL_DIFFUSE, [0.4, 0.4, 0.4, 0.4])
+        glLightfv(GL_LIGHT0, GL_AMBIENT, [1, 1, 1, 0])
+        glLightfv(GL_LIGHT0, GL_SPECULAR, [1, 1, 1, 1])
+
         glLoadIdentity()
 
         screen = pygame.display.Info()
