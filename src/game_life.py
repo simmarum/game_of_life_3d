@@ -105,7 +105,7 @@ class GameLife():
         glLoadIdentity()
 
         screen = pygame.display.Info()
-        gluPerspective(45, (screen.current_w/screen.current_h), 0.1, 50.0)
+        gluPerspective(60, (screen.current_w/screen.current_h), 0.1, 200.0)
 
         gluLookAt(self.cx, self.cy,  self.cz,
                   0, 0,  0,
