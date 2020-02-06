@@ -17,25 +17,30 @@ class Board():
         self.board = np.zeros((n, n, n))
         self.c = Cube()
 
-    def _populate_board_corner(self):
-        self.board[0, 0, 0] = 1
-        self.board[0, 1, 0] = 1
-        self.board[0, 0, 1] = 1
-        self.board[0, 1, 1] = 1
-
-        self.board[1, 0, 0] = 1
-        self.board[1, 1, 0] = 1
-        self.board[1, 0, 1] = 1
-        self.board[1, 1, 1] = 1
-
-        self.board[2, 0, 0] = 1
-        self.board[2, 1, 0] = 1
-        self.board[2, 0, 1] = 1
-        self.board[2, 1, 1] = 1
+    def _populate_board_with_cuboid(self, x, y, z):
+        tmp_pos = [
+            [0, 0, 0],
+            [0, 1, 0],
+            [0, 0, 1],
+            [0, 1, 1],
+            [1, 0, 0],
+            [1, 1, 0],
+            [1, 0, 1],
+            [1, 1, 1],
+            [2, 0, 0],
+            [2, 1, 0],
+            [2, 0, 1],
+            [2, 1, 1],
+        ]
+        for tx, ty, tz in tmp_pos:
+            self.board[x+tx, y+ty, z+tz] = 1
 
     def populate_board(self, mode):
         if mode == 'corner':
-            self._populate_board_corner()
+            self._populate_board_with_cuboid(0, 0, 0)
+        if mode == 'center':
+            tmp_cord = int(self.n/2)
+            self._populate_board_with_cuboid(tmp_cord, tmp_cord, tmp_cord)
 
     def _sum_small_cubes(self, a):
         a = a.reshape((3, 3, 3))

@@ -14,7 +14,7 @@ class GameLife():
     def __init__(self):
         self.c = Cube()
         self.board = Board(30, [4, 5, 6], [5, 6, 7])
-        self.board.populate_board('corner')
+        self.board.populate_board('center')
 
         self.fps = 60
         self.can_run = False
