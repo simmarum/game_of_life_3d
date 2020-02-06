@@ -64,21 +64,27 @@ class Board():
         if pos3d is None:
             tmp_center = int(self.n/2)
             pos3d = (tmp_center, tmp_center, tmp_center)
-        tmp_live_cell = 0
+
         glPushMatrix()
-        for x in range(self.n):
-            for y in range(self.n):
-                for z in range(self.n):
-                    if self.board[x, y, z] == 1:
-                        tmp_live_cell += 1
-                        self.c.draw(
-                            (
-                                x-pos3d[0],
-                                y-pos3d[1],
-                                z-pos3d[2],
-                            ),
-                            (0, 0, 1)
-                        )
+        tmp_idx_cells = np.where(self.board == 1)
+        tmp_idx_cells_pos = list(
+            zip(
+                tmp_idx_cells[0],
+                tmp_idx_cells[1],
+                tmp_idx_cells[2]
+            )
+        )
+        tmp_live_cell = len(tmp_idx_cells_pos)
+        for x, y, z in tmp_idx_cells_pos:
+            self.c.draw(
+                (
+                    x-pos3d[0],
+                    y-pos3d[1],
+                    z-pos3d[2],
+                ),
+                (0, 0, 1)
+            )
+
         glPopMatrix()
         screen = pygame.display.Info()
         drawText([100, 0, 0], str("{}/{}".format(tmp_live_cell, self.all_cells)))
