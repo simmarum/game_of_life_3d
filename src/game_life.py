@@ -111,10 +111,5 @@ class GameLife():
                   0, 0,  0,
                   0.0, 1.0,  0.0)
 
-        glPushMatrix()
-        self.c.draw((1, 0, 0), (0, 1, 0))
-        self.c.draw((0, 0, 1), (1, 0, 0))
-        glPopMatrix()
-
         self.board.draw(None)
         show_axes(self.rotX, self.rotY, self.rotZ)
