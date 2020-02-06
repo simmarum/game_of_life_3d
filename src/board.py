@@ -3,11 +3,14 @@ from OpenGL.GL import *
 # from OpenGL.GLU import *
 from .cube import Cube
 import scipy.ndimage.filters
+import pygame
+from .utils import drawText
 
 
 class Board():
     def __init__(self, n, to_born, to_live):
         self.n = n
+        self.all_cells = n*n*n
         self.to_born = to_born
         self.to_live = to_live
 
@@ -61,12 +64,13 @@ class Board():
         if pos3d is None:
             tmp_center = int(self.n/2)
             pos3d = (tmp_center, tmp_center, tmp_center)
-
+        tmp_live_cell = 0
         glPushMatrix()
         for x in range(self.n):
             for y in range(self.n):
                 for z in range(self.n):
                     if self.board[x, y, z] == 1:
+                        tmp_live_cell += 1
                         self.c.draw(
                             (
                                 x-pos3d[0],
@@ -76,3 +80,5 @@ class Board():
                             (0, 0, 1)
                         )
         glPopMatrix()
+        screen = pygame.display.Info()
+        drawText([100, 0, 0], str("{}/{}".format(tmp_live_cell, self.all_cells)))

@@ -25,7 +25,7 @@ def main():
 
         show_fps(game.fps)
         pygame.display.flip()
-        pygame.time.wait(10)
+        pygame.time.wait(3)
 
 
 if __name__ == '__main__':
