@@ -3,15 +3,17 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
 
+from .objloader import *
+
 
 class Cube():
 
     def __init__(self):
-        pass
+        tmp_path = os.path.join(os.path.dirname(__file__), 'models')
+        self.obj = OBJ(os.path.join(tmp_path, "cube.obj"), swapyz=True)
 
     def draw(self, position, color):
         glPushMatrix()
         glTranslatef(*position)
-        glColor3f(*color)
-        glutSolidCube(1)
+        glCallList(self.obj.gl_list)
         glPopMatrix()

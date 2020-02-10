@@ -10,12 +10,13 @@ def init_game():
     display = (800, 600)
     pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 
-    #  Enable depth test
-    glEnable(GL_DEPTH_TEST)
-    glEnable(GL_LIGHTING)
+    glLightfv(GL_LIGHT0, GL_POSITION,  (-40, 40, 40, 0.0))
+    glLightfv(GL_LIGHT0, GL_AMBIENT, (0.3, 0.3, 0.3, 1.0))
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, (0.5, 0.5, 0.5, 1.0))
     glEnable(GL_LIGHT0)
-    glEnable(GL_NORMALIZE)
-    glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE)
+    glEnable(GL_LIGHTING)
     glEnable(GL_COLOR_MATERIAL)
+    glEnable(GL_DEPTH_TEST)
+    glShadeModel(GL_SMOOTH)           # most obj files expect to be smooth-shaded
     # Accept fragment if it closer to the camera than the former one
-    glDepthFunc(GL_LESS)
+    # glDepthFunc(GL_LESS)

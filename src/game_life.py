@@ -97,15 +97,12 @@ class GameLife():
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-        glLightfv(GL_LIGHT0, GL_POSITION, [0, 0, 0])
-        glLightfv(GL_LIGHT0, GL_DIFFUSE, [0.4, 0.4, 0.4, 0.4])
-        glLightfv(GL_LIGHT0, GL_AMBIENT, [1, 1, 1, 0])
-        glLightfv(GL_LIGHT0, GL_SPECULAR, [1, 1, 1, 1])
-
+        glMatrixMode(GL_PROJECTION)
         glLoadIdentity()
-
         screen = pygame.display.Info()
         gluPerspective(60, (screen.current_w/screen.current_h), 0.1, 200.0)
+        glEnable(GL_DEPTH_TEST)
+        glMatrixMode(GL_MODELVIEW)
 
         gluLookAt(self.cx, self.cy,  self.cz,
                   0, 0,  0,
