@@ -30,7 +30,7 @@ class Board():
             [2, 0, 0],
             [2, 1, 0],
             [2, 0, 1],
-            [2, 1, 1],
+            # [2, 1, 1],
         ]
         for tx, ty, tz in tmp_pos:
             self.board[x+tx, y+ty, z+tz] = 1
